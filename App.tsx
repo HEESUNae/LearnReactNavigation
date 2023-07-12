@@ -4,66 +4,68 @@
  *
  * @format
  */
-
 import React from 'react';
+import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {Button, Text, View} from 'react-native';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
-// components
-import HomeScreen from './screens/HomeScreen';
-import DetailScreen from './screens/DetailScreen';
-import {Text, TouchableOpacity, View} from 'react-native';
-import HeaderlessScreen from './screens/HeaderlessScreen';
+const Drawer = createDrawerNavigator();
 
-const Stack = createNativeStackNavigator();
+function HomeScreen({navigation}: any) {
+  return (
+    <View>
+      <Text>Home</Text>
+      <Button title="Drawer 열기" onPress={() => navigation.openDrawer()} />
+      <Button
+        title="Setting 열기"
+        onPress={() => navigation.navigate('Setting')}
+      />
+    </View>
+  );
+}
+
+function SettingScreen({navigation}: any) {
+  return (
+    <View>
+      <Text>Setting</Text>
+      <Button title="뒤로가기" onPress={() => navigation.goBack()} />
+    </View>
+  );
+}
 
 function App(): JSX.Element {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen
-          name="Headerless"
-          component={HeaderlessScreen}
-          options={{headerShown: false}}
-        />
-        <Stack.Screen
+      <Drawer.Navigator
+        initialRouteName="Home"
+        backBehavior="history"
+        drawerContent={({navigation}: any) => (
+          <SafeAreaView>
+            <Text>A Custom Drawer</Text>
+            <Button
+              title="Drawer 닫기"
+              onPress={() => navigation.closeDrawer()}
+            />
+          </SafeAreaView>
+        )}
+        screenOptions={{
+          drawerPosition: 'left',
+          drawerActiveBackgroundColor: '#fb8c00',
+          drawerActiveTintColor: 'white',
+        }}>
+        <Drawer.Screen
           name="Home"
           component={HomeScreen}
-          options={{title: '홈'}}
+          options={{title: '홈', headerLeft: () => <Text>Left</Text>}}
         />
-        <Stack.Screen
-          name="Detail"
-          component={DetailScreen}
-          options={{
-            headerLeft: ({onPress}: any) => (
-              <TouchableOpacity onPress={onPress}>
-                <Text>Left</Text>
-              </TouchableOpacity>
-            ),
-            headerTitle: ({children}) => (
-              <View>
-                <Text>{children}</Text>
-              </View>
-            ),
-            headerRight: () => (
-              <View>
-                <Text>Right</Text>
-              </View>
-            ),
-          }}
-          // options={({route}: any) => ({
-          //   title: `상세 정보 - ${route.params.id}`,
-          //   headerStyle: {
-          //     backgroundColor: '#29b6f6',
-          //   },
-          //   headerTintColor: '#fff',
-          //   headerTitleStyle: {
-          //     fontWeight: 'bold',
-          //     fontSize: 20,
-          //   },
-          // })}
+        <Drawer.Screen
+          name="Setting"
+          component={SettingScreen}
+          options={{title: '설정'}}
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 }

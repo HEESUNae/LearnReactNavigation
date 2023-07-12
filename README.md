@@ -27,3 +27,27 @@ pod install
 - 다른 페이지로 이동
 - 라우터 파라미터
 - 뒤로가기
+
+## Drawer Navigator
+
+```
+npm i @react-navigation/drawer react-native-gesture-handler react-native-reanimated
+
+cd ios
+pod install
+
+// 캐시삭제
+npm start -- --reset-cache
+```
+
+**babel.config.js**
+
+```
+module.exports = {
+   plugins: ['react-native-reanimated/plugin']
+}
+```
+
+- 햄버거 메뉴 클릭시 드로어 네비게이션 실행
+- 드로어 네비게이션 스타일 커스텀
+- 드로어 네비게이션 다른 UI로 변경
