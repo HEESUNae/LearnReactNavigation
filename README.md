@@ -51,3 +51,43 @@ module.exports = {
 - 햄버거 메뉴 클릭시 드로어 네비게이션 실행
 - 드로어 네비게이션 스타일 커스텀
 - 드로어 네비게이션 다른 UI로 변경
+
+## Bottom Tab Navigation
+
+```
+npm i @react-navigation/bottom-tabs react-native-vector-icons
+
+// use typescript
+npm i --save-dev @types/react-native-vector-icons
+
+cd ios
+pod install
+```
+
+- 하단 탭 네비게이션 아이콘 변경
+- 하단 탭 네비게이션 스타일 커스텀
+- Native Stack Navigater 와 함께 사용
+
+> 아이콘 변경
+
+**ios/LearnReactNavigation/Info.plist**
+
+```
+...
+	<key>UIAppFonts</key>
+	<array>
+		<string>MaterialIcons.ttf</string>
+	</array>
+</dict>
+</plist>
+```
+
+**android/app/build.gradle**
+
+```
+...
+project.ext.vectoricons = [
+    iconFontNames: ['MaterialIcons.ttf']
+]
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+```
