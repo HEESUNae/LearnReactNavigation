@@ -49,8 +49,8 @@ module.exports = {
 ```
 
 - 햄버거 메뉴 클릭시 드로어 네비게이션 실행
-- 드로어 네비게이션 스타일 커스텀
-- 드로어 네비게이션 다른 UI로 변경
+- 드로어 네비게이션 부분 다른 UI로 변경
+- 스타일 커스텀
 
 ## Bottom Tab Navigation
 
@@ -64,9 +64,9 @@ cd ios
 pod install
 ```
 
-- 하단 탭 네비게이션 아이콘 변경
-- 하단 탭 네비게이션 스타일 커스텀
 - Native Stack Navigater 와 함께 사용
+- 아이콘 변경
+- 스타일 커스텀
 
 > 아이콘 변경
 
@@ -101,4 +101,17 @@ cd ios
 pod install
 ```
 
-- 머터리얼 상단 탭 네비게이션 스타일 커스텀
+- 스타일 커스텀
+
+## Material Bottom Tabs Navigation
+
+```
+npm i @react-navigation/material-bottom-tabs react-native-paper
+
+cd ios
+pod install
+```
+
+- 뱃지 추가
+- 헤더 타이틀 동기화하기
+- 스타일 변경
