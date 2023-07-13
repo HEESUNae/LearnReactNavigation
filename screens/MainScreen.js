@@ -1,21 +1,12 @@
 import React from 'react';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {Button, Text, View} from 'react-native';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const Tab = createBottomTabNavigator();
+// components
+import HomeScreen from './HomeScreen';
+import {Text, View} from 'react-native';
 
-function HomeScreen({navigation}) {
-  return (
-    <View>
-      <Text>Home</Text>
-      <Button
-        title="Detail 1 열기"
-        onPress={() => navigation.push('Detail', {id: 1})}
-      />
-    </View>
-  );
-}
+const Tab = createMaterialTopTabNavigator();
 
 function SearchScreen() {
   return (
@@ -24,7 +15,6 @@ function SearchScreen() {
     </View>
   );
 }
-
 function NotificationScreen() {
   return (
     <View>
@@ -32,7 +22,6 @@ function NotificationScreen() {
     </View>
   );
 }
-
 function MessageScreen() {
   return (
     <View>
@@ -46,26 +35,26 @@ const MainScreen = () => {
     <Tab.Navigator
       initialRouteName="Home"
       screenOptions={{
-        tabBarActiveTintColor: '#fb8c00',
-        tabBarShowLabel: false,
+        tabBarIndicatorStyle: {
+          backgroundColor: '#009688',
+        },
+        tabBarActiveTintColor: '#009688',
       }}>
       <Tab.Screen
         name="Home"
         component={HomeScreen}
         options={{
-          title: '홈',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="home" color={color} size={size} />
-          ),
+          tabBarLabel: '홈',
+          tabBarIcon: ({color}) => <Icon name="home" color={color} size={24} />,
         }}
       />
       <Tab.Screen
         name="Search"
         component={SearchScreen}
         options={{
-          title: '검색',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="search" color={color} size={size} />
+          tabBarLabel: '검색',
+          tabBarIcon: ({color}) => (
+            <Icon name="search" color={color} size={24} />
           ),
         }}
       />
@@ -73,9 +62,9 @@ const MainScreen = () => {
         name="Notification"
         component={NotificationScreen}
         options={{
-          title: '알림',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="notifications" color={color} size={size} />
+          tabBarLabel: '알림',
+          tabBarIcon: ({color}) => (
+            <Icon name="notifications" color={color} size={24} />
           ),
         }}
       />
@@ -83,9 +72,9 @@ const MainScreen = () => {
         name="Message"
         component={MessageScreen}
         options={{
-          title: '메세지',
-          tabBarIcon: ({color, size}) => (
-            <Icon name="message" color={color} size={size} />
+          tabBarLabel: '메세지',
+          tabBarIcon: ({color}) => (
+            <Icon name="message" color={color} size={24} />
           ),
         }}
       />

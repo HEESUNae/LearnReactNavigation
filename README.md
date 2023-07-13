@@ -91,3 +91,14 @@ project.ext.vectoricons = [
 ]
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 ```
+
+## Material Top Tabs Navigation
+
+```
+npm i @react-navigation/material-top-tabs react-native-tab-view react-native-pager-view
+
+cd ios
+pod install
+```
+
+- 머터리얼 상단 탭 네비게이션 스타일 커스텀
